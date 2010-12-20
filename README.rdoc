@@ -14,11 +14,32 @@ Add to your Gemfile:
 
 and run 'bundle install'.
 
+Then create a config/initializers/garails.rb with the following content:
+
+  Garails.ga_account = 'UA-12345678-9'
+  # Garails.ga_domain = '.mydomain.com'
+
 == Usage
 
 === for normal web browsers
 
-=== for mobile handsets
+Add to your layout (usually app/views/layouts/application.html.erb) in the head section:
+
+  <html>
+    <head>
+      <title>My App</title>
+      ...
+      <%= google_analytics_tracking_javascript %>
+    </head>
+    <body>
+    ...
+
+
+=== for mobile handsets (non-Javascript)
+
+In your layout for mobile handsets without Javascript support, add at the very bottom of the body the following:
+
+  <%= utm_tag %>
 
 === programmatically
 

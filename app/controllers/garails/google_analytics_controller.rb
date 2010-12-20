@@ -17,9 +17,8 @@ class Garails::GoogleAnalyticsController < ApplicationController
   UTM_COOKIE_NAME = "__utmmobile"
 
   def utm
-    unless Settings.keys.google_analytics.blank?
-      account = Settings.keys.google_analytics.sub(/^UA-/, 'MO-')
-      g = ::Gabbara::Gabba.new(account, ".#{Settings.branding.domain}", :request => request, :utmn => params[:utmn], :logger => logger)
+    if Garails.ga_setup?
+      g = Garails.mobile_gabba(request, :utmn => params[:utmn])
       g.page_view('', :utmvid => @visitor_id)
     end
     response.headers.merge(UTM_HEADERS)
@@ -38,7 +37,7 @@ class Garails::GoogleAnalyticsController < ApplicationController
   def construct_new_visitor_id
     raw_visitor_id = request.env["HTTP_X_DCMGUID"].blank? ?
       ((request.env["HTTP_USER_AGENT"] || "") + rand(0x7fffffff).to_s) :
-      (request.env["HTTP_X_DCMGUID"] + Settings.keys.google_analytics)
+      (request.env["HTTP_X_DCMGUID"] + (Garails.ga_account || 'unknown'))
     "0x" + Digest::MD5.hexdigest(raw_visitor_id)[0, 16]
   end
 end
