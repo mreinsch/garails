@@ -1,0 +1,24 @@
+== Google Analytics for Rails
+
+Complete package to use google analytics in your rails application. It supports recording to google analytics:
+
+* for normal web browsers (javascript)
+* for mobile handsets (gif)
+* programmatically (events)
+
+== Installation
+
+Add to your Gemfile:
+
+  gem 'garails'
+
+and run 'bundle install'.
+
+== Usage
+
+=== for normal web browsers
+
+=== for mobile handsets
+
+=== programmatically
+

@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    garails (0.0.1)
+      gabbara (~> 0.0.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.0.3)
+    gabbara (0.0.2)
+      activesupport
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport
+  gabbara (~> 0.0.2)
+  garails!
