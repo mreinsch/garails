@@ -1,5 +1,3 @@
-require "rails"
-
 module Garails
   class Engine < ::Rails::Engine
     initializer 'garails.mobile.helper' do |app|
