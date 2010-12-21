@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY  
   s.authors     = 'Michael Reinsch'
   s.email       = "michael@mobalean.com"
-  s.homepage    = ""
+  s.homepage    = "http://github.com/mreinsch/garails"
   s.description = "Google Analytics for Rails"
   s.summary     = "Google Analytics for Rails"
 
