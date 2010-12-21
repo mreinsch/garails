@@ -2,8 +2,8 @@
 //<![CDATA[
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '<%= Garails.ga_account %>']);
-  <% unless Garails.ga_domain.blank? -%>
-  _gaq.push(['_setDomainName', '<%= Garails.ga_domain %>']);
+  <% unless Garails.ga_cookie_domain.blank? -%>
+  _gaq.push(['_setDomainName', '<%= Garails.ga_cookie_domain %>']);
   <% end -%>
   _gaq.push(['_trackPageview']);
   (function() {

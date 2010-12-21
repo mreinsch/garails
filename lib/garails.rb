@@ -4,10 +4,16 @@ module Garails
   mattr_accessor :ga_account
   @@ga_account = nil
 
-  # domain setting. Only set this if you need to (e.g. for subdomain tracking).
-  # Corresponds to "_setDomainName".
-  mattr_accessor :ga_domain
-  @@ga_domain = nil
+  # cookie domain for the tracking cookie. Only set this if you need to 
+  # (e.g. for subdomain tracking). Corresponds to "_setDomainName".
+  mattr_accessor :ga_cookie_domain
+  @@ga_cookie_domain = nil
+
+  # the host name (such as www.example.com). This is usually derived from the
+  # incoming request. Set it here if you want to enable tracking outside your
+  # controllers or views.
+  mattr_accessor :ga_hostname
+  @@ga_hostname = nil
 
   def self.ga_setup?
     ! Garails.ga_account.blank?
@@ -26,13 +32,10 @@ module Garails
   end
 
   def self.create_gabba(account, request, opts = {})
-    Gabbara::Gabba.new(account, Garails.ga_domain, opts).tap do |g|
-      g.logger = Rails.logger
-      g.request = request
-    end
+    opts = opts.reverse_merge(:request => request, :logger => Rails.logger)
+    Gabbara::Gabba.new(account, Garails.ga_hostname, opts)
   end
 end
 
 require 'garails/version'
 require 'garails/engine'
-

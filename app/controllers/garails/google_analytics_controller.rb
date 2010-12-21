@@ -31,7 +31,9 @@ class Garails::GoogleAnalyticsController < ApplicationController
 
   def extract_visitor_id
     @visitor_id = cookies[UTM_COOKIE_NAME] || construct_new_visitor_id
-    cookies[UTM_COOKIE_NAME] = {:value => @visitor_id, :expires => Time.now + 2.years, :path => '/'}
+    cookie_data = {:value => @visitor_id, :expires => Time.now + 2.years, :path => '/'}
+    cookie_data[:domain] = Garails.ga_cookie_domain unless Garails.ga_cookie_domain.blank?
+    cookies[UTM_COOKIE_NAME] = cookie_data
   end
 
   def construct_new_visitor_id
