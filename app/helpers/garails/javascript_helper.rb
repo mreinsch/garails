@@ -1,6 +1,6 @@
 module Garails::JavascriptHelper
   def google_analytics_tracking_javascript
-    return "" if Garails.ga_account.blank?
+    return "" unless Garails.ga_setup?
     render :template => "garails/google_analytics"
   end
 end
