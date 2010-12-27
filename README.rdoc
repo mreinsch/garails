@@ -44,3 +44,9 @@ In your layout for mobile handsets without Javascript support, add at the very b
 
 === programmatically
 
+In your view or controller you can record events by using:
+
+  ga_event(category, action, label, value)
+
+See http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html for details. label and value are optional.
+
