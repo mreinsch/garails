@@ -1,3 +1,5 @@
+require 'gabbara'
+
 module Garails
 
   # account identifier as issued by google analytics
@@ -33,7 +35,7 @@ module Garails
 
   def self.create_gabba(account, request, opts = {})
     opts = opts.reverse_merge(:request => request, :logger => Rails.logger)
-    Gabbara::Gabba.new(account, Garails.ga_hostname, opts)
+    ::Gabbara::Gabba.new(account, Garails.ga_hostname, opts)
   end
 end
 
